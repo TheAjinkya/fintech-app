@@ -1,0 +1,70 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 12px;
+  border-bottom: 2px solid #eef2f7;
+}
+
+th button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+tbody tr {
+  transition: all 0.15s ease;
+}
+
+tbody tr:hover {
+  background: #f9fbff;
+}
+
+td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #f1f3f7;
+  font-size: 14px;
+}
+
+.Equities {
+  background: #edf4ff;
+}
+
+.Macro {
+  background: #ffffff;
+}
+
+.Credit {
+  background: #edfff3;
+}
+
+.price {
+  font-weight: 600;
+}
+
+.positive {
+  color: #2563eb;
+}
+
+.negative {
+  color: #dc2626;
+}
+.ticker {
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
