@@ -1,73 +1,158 @@
-# React + TypeScript + Vite
+# Financial Instruments Table
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page React application that displays and sorts a list of financial instruments.
 
-Currently, two official plugins are available:
+Built as part of a Frontend Engineer technical assessment using **React + TypeScript + Vite**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Sortable table:
+  - **Ticker** → alphabetical
+  - **Price** → numeric
+  - **Asset Class** → custom priority (Equities → Macro → Credit)
+- Active column highlighting
+- Sticky table header with scrollable body
+- Currency formatting (GBP)
+- Positive / negative price colouring
+- Row colour coding by asset class
+- Consistent column sizing using `colgroup`
+- Accessible button-based sorting
+- Clean, responsive layout
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Sorting Rules
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Asset Class Priority
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Equities
+2. Macro
+3. Credit
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Sorting is handled using pure utility functions to keep UI components stateless and testable.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **React**
+- **TypeScript**
+- **Vite**
+- **CSS Modules**
+- **ESLint**
+
+---
+
+## Project Structure
+
+src
+├── components
+│ └── instruments-table
+│ ├── InstrumentsTable.tsx
+│ ├── TableHeader.tsx
+│ ├── TableRow.tsx
+│ ├── instrumentsTable.module.css
+│ └── types.ts
+│
+├── utils
+│ └── sorters.ts
+│
+├── hooks
+│ └── useInstrumentsData.ts
+│
+├── services
+│ └── instrumentsApi.ts
+│
+└── data
+└── sampleData.json
+
+
+---
+
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+2. Run the development server
+npm run dev
+3. Build for production
+npm run build
+4. Preview production build
+npm run preview
+
+- Testing
+Run tests with:
+
+npm run test
+Business logic (sorting) is implemented as pure functions so it can be unit tested independently from the UI.
+
+- UI & Styling
+CSS Modules for scoped styling
+
+table-layout: fixed for stable column sizing
+
+colgroup used to guarantee header/body alignment
+
+font-variant-numeric: tabular-nums for financial data readability
+
+Sticky header inside scroll container
+
+- Accessibility
+
+Sorting is implemented using <button> inside table headers
+
+Keyboard and screen-reader friendly
+
+Clear visual indication of active sort column
+
+- Performance Considerations
+useMemo used to avoid unnecessary resorting
+
+Stateless row components for efficient rendering
+
+Pure sorting utilities
+
+- Data Layer
+The app currently uses a mock API (local JSON) wrapped in a service.
+
+This allows easy replacement with a real backend without changing UI components.
+
+- Scalability
+The architecture supports:
+
+Server-side data
+
+Pagination / virtualization
+
+Additional columns
+
+Multi-column sorting
+
+Real-time updates
+
+- Design Decisions
+Single source of truth for sorting state in the table component
+
+Controlled header component for predictable UI
+
+Utility-based business logic for testability
+
+Colgroup for column sizing to avoid layout shift with sticky headers
+
+- Future Improvements
+Column resize
+
+Multi-column sorting
+
+Row virtualization for large datasets
+
+Theming support
+
+Storybook for component isolation
+
+- Author
+Ajinkya Chanshetty
