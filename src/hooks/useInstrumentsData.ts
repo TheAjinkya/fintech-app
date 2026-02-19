@@ -8,6 +8,7 @@ export const useInstrumentsData = () => {
 
   useEffect(() => {
     fetchInstruments().then((res) => {
+      console.log("res", res)
       setData(res);
       setLoading(false);
     });
