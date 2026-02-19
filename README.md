@@ -45,37 +45,10 @@ Sorting is handled using pure utility functions to keep UI components stateless 
 
 ---
 
-## Project Structure
-
-src
-├── components
-│ └── instruments-table
-│ ├── InstrumentsTable.tsx
-│ ├── TableHeader.tsx
-│ ├── TableRow.tsx
-│ ├── instrumentsTable.module.css
-│ └── types.ts
-│
-├── utils
-│ └── sorters.ts
-│
-├── hooks
-│ └── useInstrumentsData.ts
-│
-├── services
-│ └── instrumentsApi.ts
-│
-└── data
-└── sampleData.json
-
-
----
 
 ## Getting Started
-
-### 1. Install dependencies
-
-```bash
+```
+1. Install dependencies
 npm install
 2. Run the development server
 npm run dev
@@ -83,14 +56,15 @@ npm run dev
 npm run build
 4. Preview production build
 npm run preview
-
+```
 - Testing
 Run tests with:
-
+```
 npm run test
+```
 Business logic (sorting) is implemented as pure functions so it can be unit tested independently from the UI.
 
-- UI & Styling
+## UI & Styling
 CSS Modules for scoped styling
 
 table-layout: fixed for stable column sizing
@@ -101,7 +75,7 @@ font-variant-numeric: tabular-nums for financial data readability
 
 Sticky header inside scroll container
 
-- Accessibility
+## Accessibility
 
 Sorting is implemented using <button> inside table headers
 
@@ -109,19 +83,19 @@ Keyboard and screen-reader friendly
 
 Clear visual indication of active sort column
 
-- Performance Considerations
+## Performance Considerations
 useMemo used to avoid unnecessary resorting
 
 Stateless row components for efficient rendering
 
 Pure sorting utilities
 
-- Data Layer
+## Data Layer
 The app currently uses a mock API (local JSON) wrapped in a service.
 
 This allows easy replacement with a real backend without changing UI components.
 
-- Scalability
+## Scalability
 The architecture supports:
 
 Server-side data
@@ -134,7 +108,7 @@ Multi-column sorting
 
 Real-time updates
 
-- Design Decisions
+## Design Decisions
 Single source of truth for sorting state in the table component
 
 Controlled header component for predictable UI
@@ -143,7 +117,7 @@ Utility-based business logic for testability
 
 Colgroup for column sizing to avoid layout shift with sticky headers
 
-- Future Improvements
+## Future Improvements
 Column resize
 
 Multi-column sorting
@@ -154,5 +128,5 @@ Theming support
 
 Storybook for component isolation
 
-- Author
+## Author
 Ajinkya Chanshetty
