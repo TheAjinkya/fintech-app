@@ -1,30 +1,52 @@
-import { useState } from 'react';
+import styles from './instrumentsTable.module.css';
+
+type SortField = 'ticker' | 'price' | 'assetClass';
 
 type Props = {
-  onSort: (field: 'ticker' | 'price' | 'assetClass') => void;
+  onSort: (field: SortField) => void;
+  currentSort: SortField;
 };
+
 const SortIcon = ({ active }: { active: boolean }) => (
-  <span style={{ opacity: active ? 1 : 0.3 }}>↕</span>
+  <span style={{ opacity: active ? 1 : 0.25, fontSize: 12 }}>
+    {active ? '↓' : '↕'}
+  </span>
 );
 
-export const TableHeader = ({ onSort }: Props) => {
-  const [current, setCurrent] = useState<'ticker' | 'price' | 'assetClass' | null>(null);
-
-  const handleSort = (field: 'ticker' | 'price' | 'assetClass') => {
-    setCurrent(field);
-    onSort(field);
-  };
+export const TableHeader = ({ onSort, currentSort }: Props) => {
+  const getClass = (field: SortField) =>
+    currentSort === field ? styles.activeSort : '';
 
   return (
     <thead>
       <tr>
-        <th><button onClick={() => handleSort('ticker')}>Ticker</button></th>
         <th>
-          <button onClick={() => handleSort('price')}>
-            Price <SortIcon active={current === 'price'} />
+          <button
+            className={getClass('ticker')}
+            onClick={() => onSort('ticker')}
+          >
+            Ticker <SortIcon active={currentSort === 'ticker'} />
           </button>
         </th>
-        <th><button onClick={() => handleSort('assetClass')}>Asset Class</button></th>
+
+        <th>
+          <button
+             className={currentSort === 'price' ? styles.activeSort : ''}
+            onClick={() => onSort('price')}
+          >
+            Price <SortIcon active={currentSort === 'price'} />
+          </button>
+        </th>
+
+        <th>
+          <button
+            className={getClass('assetClass')}
+            onClick={() => onSort('assetClass')}
+          >
+            Asset Class{' '}
+            <SortIcon active={currentSort === 'assetClass'} />
+          </button>
+        </th>
       </tr>
     </thead>
   );

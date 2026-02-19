@@ -12,10 +12,12 @@ export const TableRow = ({ instrument }: { instrument: Instrument }) => {
 
   return (
     <tr className={styles[instrument.assetClass]}>
-      <td>{instrument.ticker}</td>
+      <td className={styles.ticker}>{instrument.ticker}</td>
+
       <td className={`${styles.price} ${priceClass}`}>
         {formattedPrice}
       </td>
+
       <td>{instrument.assetClass}</td>
     </tr>
   );

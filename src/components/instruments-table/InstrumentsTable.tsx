@@ -1,5 +1,10 @@
 import { useMemo, useState } from 'react';
-import { sortByAssetClass, sortByPriceDesc, sortByTicker } from '../../utils/sorters';
+import styles from './instrumentsTable.module.css';
+import {
+  sortByAssetClass,
+  sortByPriceDesc,
+  sortByTicker,
+} from '../../utils/sorters';
 import { TableRow } from './TableRow';
 import { TableHeader } from './TableHeader';
 import type { Instrument } from './types';
@@ -21,13 +26,15 @@ export const InstrumentsTable = ({ data }: { data: Instrument[] }) => {
   }, [data, sortField]);
 
   return (
-    <table>
-      <TableHeader onSort={setSortField} />
-      <tbody>
-        {sortedData.map((item) => (
-          <TableRow key={item.ticker} instrument={item} />
-        ))}
-      </tbody>
-    </table>
+    <div className={styles.tableWrapper}>
+      <table className={styles.table}>
+        <TableHeader onSort={setSortField} currentSort={sortField} />
+        <tbody>
+          {sortedData.map((item) => (
+            <TableRow key={item.ticker} instrument={item} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };

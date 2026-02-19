@@ -1,7 +1,5 @@
-import Dashboard from "./components/Dashboard";
 import { InstrumentsTable } from "./components/instruments-table/InstrumentsTable";
 import { useInstrumentsData } from "./hooks/useInstrumentsData";
-
 function App() {
   const { data, loading } = useInstrumentsData();
 

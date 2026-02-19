@@ -1,20 +1,31 @@
+.tableWrapper {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
-thead {
+/* ===== HEADER ===== */
+
+thead th {
   position: sticky;
   top: 0;
   background: white;
+  z-index: 1;
 }
 
 th {
   text-align: left;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   padding: 14px 12px;
   border-bottom: 2px solid #eef2f7;
+  color: #6b7280;
+  letter-spacing: 0.03em;
 }
 
 th button {
@@ -22,24 +33,64 @@ th button {
   border: none;
   font: inherit;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
+  color: inherit;
+  padding: 0;
 }
 
-tbody tr {
-  transition: all 0.15s ease;
+th button:hover {
+  color: #111827;
 }
 
-tbody tr:hover {
-  background: #f9fbff;
+.activeSort {
+  color: #2563eb;
 }
+
+/* ===== BODY ===== */
 
 td {
   padding: 14px 12px;
   border-bottom: 1px solid #f1f3f7;
   font-size: 14px;
+  color: #111827;
+  font-variant-numeric: tabular-nums;
 }
+
+tbody tr {
+  transition: filter 0.15s ease;
+}
+
+tbody tr:hover {
+  filter: brightness(0.98);
+}
+
+/* ===== COLUMN ALIGNMENT ===== */
+
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: right;
+}
+
+/* ===== COLUMN WIDTH BALANCE ===== */
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 30%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 35%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 35%;
+}
+
+/* ===== ROW COLORS ===== */
 
 .Equities {
   background: #edf4ff;
@@ -53,6 +104,13 @@ td {
   background: #edfff3;
 }
 
+/* ===== CELL STYLING ===== */
+
+.ticker {
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
 .price {
   font-weight: 600;
 }
@@ -64,7 +122,16 @@ td {
 .negative {
   color: #dc2626;
 }
-.ticker {
-  font-weight: 600;
-  letter-spacing: 0.4px;
+.activeSort {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.activeSort::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: #2563eb;
+  margin-top: 4px;
+  border-radius: 2px;
 }
