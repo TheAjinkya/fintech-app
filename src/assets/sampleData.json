@@ -6,7 +6,7 @@
   },
   {
     "ticker": "BETA",
-    "price": -3791.37,
+    "price": 3791.37,
     "assetClass": "Equities"
   },
   {
@@ -87,6 +87,16 @@
   {
     "ticker": "PSI",
     "price": 2997.78,
+    "assetClass": "Credit"
+  },
+  {
+    "ticker": "PSIA",
+    "price": -997.78,
+    "assetClass": "Credit"
+  },
+  {
+    "ticker": "PSIB",
+    "price": -197.78,
     "assetClass": "Credit"
   }
 ]
